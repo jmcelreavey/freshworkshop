@@ -34,3 +34,4 @@ github:
 vscode:
   extensions:
     - "denoland.vscode-deno"
+    - "trunk.io"

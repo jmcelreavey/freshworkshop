@@ -1,0 +1,11 @@
+{
+  "recommendations": [
+    "denoland.vscode-deno",
+    "eamodio.gitlens",
+    "KnisterPeter.vscode-github",
+    "GitHub.copilot",
+    "trunk.io",
+    "seatonjiang.gitmoji-vscode"
+  ],
+  "unwantedRecommendations": []
+}
