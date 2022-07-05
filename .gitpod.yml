@@ -3,6 +3,9 @@ tasks:
   - name: Install / Migrate
     init: >
       docker compose build
+      docker-compose up -d
+      docker-compose down
+      docker network prune -f
   - name: Start Application
     command: >
       docker compose up -d
