@@ -8,10 +8,15 @@ export function handler(
   ctx: MiddlewareHandlerContext<State>,
 ) {
   ctx.state.locales = [];
+  ctx.state.darkMode = true;
 
   const cookies = getCookies(req.headers);
   if (cookies.locale) {
     ctx.state.locales.push(cookies.locale);
+  }
+
+  if (cookies["dark-mode"]) {
+    ctx.state.darkMode = cookies["dark-mode"] === "true";
   }
 
   const langs = parse(req.headers.get("accept-language") || undefined);

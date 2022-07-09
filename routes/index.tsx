@@ -1,13 +1,11 @@
 /** @jsx h */
 import { h } from "preact";
-import { Handlers, PageProps } from "$fresh/server.ts";
+import { PageProps } from "$fresh/server.ts";
 import { tw } from "@twind";
 import { listPosts, Post } from "../utils/posts.ts";
+import { Data, Layout } from "../components/Layout.tsx";
+import { Handlers } from "$fresh/server.ts";
 import { State } from "../utils/state.ts";
-
-interface Data extends State {
-  posts: Post[];
-}
 
 export const handler: Handlers<Data, State> = {
   async GET(_req, ctx) {
@@ -17,16 +15,18 @@ export const handler: Handlers<Data, State> = {
 };
 
 export default function Home(props: PageProps<Data>) {
-  const { posts, locales } = props.data;
+  const { posts, locales, darkMode } = props.data;
+
   return (
-    <div class={tw`px-4 mx-auto max-w-screen-md`}>
-      <h1 class={tw`font-bold text-5xl mt-12`}>Luca's Blog</h1>
+    // Move darkmode to a hook
+    <Layout darkMode={darkMode}>
+      <h1 class={tw`font-bold text-5xl mt-12`}>Johnny's Blog</h1>
       <ul class={tw`mt-8`}>
         {posts.map((post) => (
           <PostEntry post={post} locales={locales} />
         ))}
       </ul>
-    </div>
+    </Layout>
   );
 }
 
@@ -34,7 +34,7 @@ function PostEntry(props: { post: Post; locales: string[] }) {
   const { post, locales } = props;
   const dateFmt = new Intl.DateTimeFormat(locales, { dateStyle: "short" });
   return (
-    <li class={tw`border-t`}>
+    <li class={tw`border-t `}>
       <a href={`/blog/${post.id}`} class={tw`py-2 flex group gap-4`}>
         <div>{dateFmt.format(post.publishAt)}</div>
         <div>

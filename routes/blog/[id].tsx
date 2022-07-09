@@ -5,8 +5,9 @@ import * as gfm from "$gfm";
 import { tw } from "@twind";
 import { loadPost, Post } from "../../utils/posts.ts";
 import { State } from "../../utils/state.ts";
+import { Layout } from "../../components/Layout.tsx";
 
-interface Data extends State {
+export interface Data extends State {
   post: Post;
 }
 
@@ -25,7 +26,7 @@ export default function PostPage(props: PageProps<Data>) {
   const dateFmt = new Intl.DateTimeFormat(locales, { dateStyle: "full" });
   const html = gfm.render(post.content);
   return (
-    <div class={tw`px-4 mx-auto max-w-screen-md`}>
+    <Layout>
       <p class={tw`text-gray-600 mt-12`}>{dateFmt.format(post.publishAt)}</p>
       <h1 class={tw`font-bold text-5xl mt-2`}>{post.title}</h1>
       <style dangerouslySetInnerHTML={{ __html: gfm.CSS }} />
@@ -33,6 +34,6 @@ export default function PostPage(props: PageProps<Data>) {
         class={tw`mt-12` + " markdown-body"}
         dangerouslySetInnerHTML={{ __html: html }}
       />
-    </div>
+    </Layout>
   );
 }

@@ -3,17 +3,19 @@
 // This file is automatically updated during development when running `dev.ts`.
 
 import * as $0 from "./routes/_middleware.ts";
-import * as $1 from "./routes/blog/[id].tsx";
-import * as $2 from "./routes/index.tsx";
-import * as $3 from "./routes/settings.tsx";
+import * as $1 from "./routes/api/toggle-light-switch.ts";
+import * as $2 from "./routes/blog/[id].tsx";
+import * as $3 from "./routes/index.tsx";
+import * as $4 from "./routes/settings.tsx";
 import * as $$0 from "./islands/LocaleSelector.tsx";
 
 const manifest = {
   routes: {
     "./routes/_middleware.ts": $0,
-    "./routes/blog/[id].tsx": $1,
-    "./routes/index.tsx": $2,
-    "./routes/settings.tsx": $3,
+    "./routes/api/toggle-light-switch.ts": $1,
+    "./routes/blog/[id].tsx": $2,
+    "./routes/index.tsx": $3,
+    "./routes/settings.tsx": $4,
   },
   islands: {
     "./islands/LocaleSelector.tsx": $$0,

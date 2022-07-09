@@ -9,21 +9,18 @@ const date = new Date();
 export default function LocaleSelector() {
   const [localeCode, setLocaleCode] = useState("");
 
-  const [locale, dateFmt] = useMemo(
-    () => {
-      try {
-        const locale = new Intl.Locale(localeCode);
-        const dateFmt = new Intl.DateTimeFormat(locale.language, {
-          dateStyle: "long",
-          timeStyle: "medium",
-        });
-        return [locale, dateFmt];
-      } catch {
-        return [null, null];
-      }
-    },
-    [localeCode],
-  );
+  const [locale, dateFmt] = useMemo(() => {
+    try {
+      const locale = new Intl.Locale(localeCode);
+      const dateFmt = new Intl.DateTimeFormat(locale.language, {
+        dateStyle: "long",
+        timeStyle: "medium",
+      });
+      return [locale, dateFmt];
+    } catch {
+      return [null, null];
+    }
+  }, [localeCode]);
 
   const readyToSubmit = localeCode === "" || locale !== null;
 
@@ -45,15 +42,14 @@ export default function LocaleSelector() {
       >
         Save
       </button>
-      {locale && dateFmt &&
-        (
-          <dl>
-            <dt class={tw`text-gray-600 mt-2 font-bold`}>Language</dt>
-            <dd class={tw`text-gray-600`}>{localeFmt.of(locale.language)}</dd>
-            <dt class={tw`text-gray-600 mt-2 font-bold`}>Time sample</dt>
-            <dd class={tw`text-gray-600`}>{dateFmt.format(date)}</dd>
-          </dl>
-        )}
+      {locale && dateFmt && (
+        <dl>
+          <dt class={tw`text-gray-600 mt-2 font-bold`}>Language</dt>
+          <dd class={tw`text-gray-600`}>{localeFmt.of(locale.language)}</dd>
+          <dt class={tw`text-gray-600 mt-2 font-bold`}>Time sample</dt>
+          <dd class={tw`text-gray-600`}>{dateFmt.format(date)}</dd>
+        </dl>
+      )}
     </form>
   );
 }
