@@ -8,4 +8,10 @@ Start the project:
 deno task start
 ```
 
-This will watch the project directory and restart as necessary.
+OR
+
+```
+docker-compose up -d
+```
+
+This will expose your project to port 8000 then watch the project directory and restart as necessary.
